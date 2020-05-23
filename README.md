@@ -1,3 +1,7 @@
+A personal project made with React.JS in a few hours.
+
+(First time coding in Javascript in many years!)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
