@@ -148,10 +148,14 @@ class DeckShuffler extends React.Component {
       </button>
       <br></br>
       <p>Deck results Player {player_num}:</p>
-      <p>Clubs: {deck_str[0]}</p>
-      <p>Diamonds: {deck_str[1]}</p>
-      <p>Hearts: {deck_str[2]}</p>
-      <p>Spades: {deck_str[3]}</p>
+      <p><b>&#9827;</b> <b>Clubs:</b></p>
+      <p>{deck_str[0]}</p>
+      <p><b style={{'color': 'red'}}>&#9830;</b> <b>Diamonds:</b></p>
+      <p>{deck_str[1]}</p>
+      <p><b style={{'color': 'red'}}>&#9829;</b> <b>Hearts:</b></p>
+      <p>{deck_str[2]}</p>
+      <p><b>&#9824;</b> <b>Spades:</b></p>
+      <p>{deck_str[3]}</p>
         {/*
       <br></br>
       <p>Deck results Player 1:</p>
