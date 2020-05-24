@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/card_deck_shuffler/static/css/main.ef997805.chunk.css",
-    "main.js": "/card_deck_shuffler/static/js/main.bbe1e065.chunk.js",
-    "main.js.map": "/card_deck_shuffler/static/js/main.bbe1e065.chunk.js.map",
+    "main.js": "/card_deck_shuffler/static/js/main.bbeb3a7d.chunk.js",
+    "main.js.map": "/card_deck_shuffler/static/js/main.bbeb3a7d.chunk.js.map",
     "runtime-main.js": "/card_deck_shuffler/static/js/runtime-main.d1a96882.js",
     "runtime-main.js.map": "/card_deck_shuffler/static/js/runtime-main.d1a96882.js.map",
     "static/js/2.1a78bfbb.chunk.js": "/card_deck_shuffler/static/js/2.1a78bfbb.chunk.js",
     "static/js/2.1a78bfbb.chunk.js.map": "/card_deck_shuffler/static/js/2.1a78bfbb.chunk.js.map",
     "index.html": "/card_deck_shuffler/index.html",
-    "precache-manifest.d0f670a5d3ccb953f2c85c5028e58f47.js": "/card_deck_shuffler/precache-manifest.d0f670a5d3ccb953f2c85c5028e58f47.js",
+    "precache-manifest.0bdb31358e20fc7de7fc8adfca010b94.js": "/card_deck_shuffler/precache-manifest.0bdb31358e20fc7de7fc8adfca010b94.js",
     "service-worker.js": "/card_deck_shuffler/service-worker.js",
     "static/css/main.ef997805.chunk.css.map": "/card_deck_shuffler/static/css/main.ef997805.chunk.css.map",
     "static/js/2.1a78bfbb.chunk.js.LICENSE.txt": "/card_deck_shuffler/static/js/2.1a78bfbb.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.d1a96882.js",
     "static/js/2.1a78bfbb.chunk.js",
     "static/css/main.ef997805.chunk.css",
-    "static/js/main.bbe1e065.chunk.js"
+    "static/js/main.bbeb3a7d.chunk.js"
   ]
 }
