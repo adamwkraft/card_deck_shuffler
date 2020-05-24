@@ -7,28 +7,29 @@ import * as serviceWorker from './serviceWorker';
 class DeckShuffler extends React.Component {
   constructor(props) {
     super(props);
-      var orig_deck = [];
-      var suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
-      var values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
-      var ordinal_num = 1
-      for (var si = 0; si < suits.length; si++) {
-          for (var vi = 0; vi < values.length; vi++) {
-              console.log({'ordinal_num': ordinal_num,
-                  'suit': suits[si], 'value': values[vi]})
-              orig_deck.push({'ordinal_num': ordinal_num,
-                  'suit': suits[si], 'value': values[vi]})
-              ordinal_num += 1
-          }
+    var orig_deck = [];
+    var suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
+    var values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
+    var ordinal_num = 1
+    for (var si = 0; si < suits.length; si++) {
+      for (var vi = 0; vi < values.length; vi++) {
+        orig_deck.push({
+          'ordinal_num': ordinal_num,
+          'suit': suits[si], 'value': values[vi]
+        })
+        ordinal_num += 1
       }
-      console.log("ADAM ORIG DECK " + orig_deck)
-      var shuffled_deck = orig_deck.slice()
-      var seed = 777;
-      shuffled_deck = shuffle(shuffled_deck, seed);
+    }
+    var shuffled_deck = orig_deck.slice()
+    var seed = 777;
+    shuffled_deck = shuffle(shuffled_deck, seed);
     this.state = {
       seed: seed,
+      shuffled_seed: seed,
       orig_deck: orig_deck,
       deck: shuffled_deck,
-      selectedOption: "option1",
+      selected_player: 'player1',
+      next_selected_player: 'player1',
     };
 
     this.handleSeedChange = this.handleSeedChange.bind(this);
@@ -36,7 +37,7 @@ class DeckShuffler extends React.Component {
   }
 
   handleSeedChange(event) {
-    this.setState({seed: event.target.value});
+    this.setState({ seed: event.target.value });
   }
 
   handleShuffle(event) {
@@ -44,27 +45,36 @@ class DeckShuffler extends React.Component {
     const shuffled_deck = shuffle(this.state.orig_deck, this.state.seed);
 
     this.setState({
-        orig_deck: orig_deck,
-        deck: shuffled_deck
+      orig_deck: orig_deck,
+      deck: shuffled_deck,
+      shuffled_seed: this.state.seed,
+      selected_player: this.state.next_selected_player,
     })
   }
 
- handleOptionChange = changeEvent => {
-  this.setState({
-    selectedOption: changeEvent.target.value
-  });
-};
+  handleOptionChange = changeEvent => {
+    this.setState({
+      next_selected_player: changeEvent.target.value
+    });
+  };
 
   render() {
     var player_num;
-    if (this.state.selectedOption === "option1") {
+    switch (this.state.selected_player) {
+      case 'player1':
         player_num = 1;
-    } else if (this.state.selectedOption === "option2") {
+        break;
+      case 'player2':
         player_num = 2;
-    } else if (this.state.selectedOption === "option3") {
+        break;
+      case 'player3':
         player_num = 3;
-    } else if (this.state.selectedOption === "option4") {
+        break;
+      case 'player4':
         player_num = 4;
+        break;
+      default:
+        break
     }
     const deck_str = printDeck(this.state.deck, player_num);
     // For Debug
@@ -72,90 +82,104 @@ class DeckShuffler extends React.Component {
     // const deck_str2 = printDeck(this.state.deck, 2);
     // const deck_str3 = printDeck(this.state.deck, 3);
     // const deck_str4 = printDeck(this.state.deck, 4);
-    return(
-    <div className="deck_shuffler">
-      <h1>Card Deck Shuffler</h1>
-      <p>Seed: </p>
-      <input type="text" id="seed_input"
-        value={this.state.seed}
-        onChange={this.handleSeedChange}
-      ></input>
+    return (
+      <div className='deck_shuffler'>
+        <h1>Card Deck Shuffler</h1>
+        <p>
+          A random card deck shuffler, useful to help set up 4 player card games.
+          Especially useful when players are remote from one another.
+        </p>
+        <h2>Instructions:</h2>
+        <p>
+          Gather a group of 4 remote players, each with a deck of cards and this webpage open.
+          Assign each person a player number and have everyone select their individual player number on this page.
+          Pick a "Seed" for the game. This can be any string of characters and is used to create a random
+          shuffle of the cards. Every player must enter in the same seed. Then click the "Shuffle" button
+          and each player will see their particular set of cards for the game. When you want to play another game,
+          simply pick a new "Seed" and click "Shuffle" again. Best played with a trustworthy group,
+          since this simple website does not prevent "peaking" at other hands.
+        </p>
 
         <form>
-
-      <p>Player Number: </p>
-  <div className="form-check">
-    <label>
-      <input
-        type="radio"
-        name="react-tips"
-        value="option1"
-        checked={this.state.selectedOption === "option1"}
-        onChange={this.handleOptionChange}
-        className="form-check-input"
-      />
+          <p><b>Player Number:</b></p>
+          <div className='form-check'>
+            <label>
+              <input
+                type='radio'
+                value='player1'
+                checked={this.state.next_selected_player === 'player1'}
+                onChange={this.handleOptionChange}
+                className='form-check-input'
+              />
       Player 1
     </label>
-  </div>
+          </div>
 
-  <div className="form-check">
-    <label>
-      <input
-        type="radio"
-        name="react-tips"
-        value="option2"
-        checked={this.state.selectedOption === "option2"}
-        onChange={this.handleOptionChange}
-        className="form-check-input"
-      />
+          <div className='form-check'>
+            <label>
+              <input
+                type='radio'
+                value='player2'
+                checked={this.state.next_selected_player === 'player2'}
+                onChange={this.handleOptionChange}
+                className='form-check-input'
+              />
       Player 2
     </label>
-  </div>
+          </div>
 
-  <div className="form-check">
-    <label>
-      <input
-        type="radio"
-        name="react-tips"
-        value="option3"
-        checked={this.state.selectedOption === "option3"}
-        onChange={this.handleOptionChange}
-        className="form-check-input"
-      />
+          <div className='form-check'>
+            <label>
+              <input
+                type='radio'
+                value='player3'
+                checked={this.state.next_selected_player === 'player3'}
+                onChange={this.handleOptionChange}
+                className='form-check-input'
+              />
       Player 3
     </label>
-  </div>
+          </div>
 
-  <div className="form-check">
-    <label>
-      <input
-        type="radio"
-        name="react-tips"
-        value="option4"
-        checked={this.state.selectedOption === "option4"}
-        onChange={this.handleOptionChange}
-        className="form-check-input"
-      />
+          <div className='form-check'>
+            <label>
+              <input
+                type='radio'
+                value='player4'
+                checked={this.state.next_selected_player === 'player4'}
+                onChange={this.handleOptionChange}
+                className='form-check-input'
+              />
       Player 4
     </label>
-  </div>
+          </div>
 
-</form>
+        </form>
 
-      <br></br>
-      <button onClick={this.handleShuffle}>
-        Shuffle
-      </button>
-      <br></br>
-      <p>Deck results Player {player_num}:</p>
-      <p><b>&#9827;</b> <b>Clubs:</b></p>
-      <p>{deck_str[0]}</p>
-      <p><b style={{'color': 'red'}}>&#9830;</b> <b>Diamonds:</b></p>
-      <p>{deck_str[1]}</p>
-      <p><b style={{'color': 'red'}}>&#9829;</b> <b>Hearts:</b></p>
-      <p>{deck_str[2]}</p>
-      <p><b>&#9824;</b> <b>Spades:</b></p>
-      <p>{deck_str[3]}</p>
+        <p><b>Seed:</b></p>
+        <input type='text' id='seed_input'
+          value={this.state.seed}
+          onChange={this.handleSeedChange}
+        ></input>
+
+
+        <p></p>
+        <button onClick={this.handleShuffle}>
+          Shuffle
+        </button>
+
+        <h2>Shuffled Results:</h2>
+        <p>Using Seed: {this.state.shuffled_seed}</p>
+
+        <p><b>Hand for Player {player_num}:</b></p>
+        <p><b>&#9827;</b> <b>Clubs:</b></p>
+        <p>{deck_str[0]}</p>
+        <p><b style={{ 'color': 'red' }}>&#9830;</b> <b>Diamonds:</b></p>
+        <p>{deck_str[1]}</p>
+        <p><b style={{ 'color': 'red' }}>&#9829;</b> <b>Hearts:</b></p>
+        <p>{deck_str[2]}</p>
+        <p><b>&#9824;</b> <b>Spades:</b></p>
+        <p>{deck_str[3]}</p>
         {/*
       <br></br>
       <p>Deck results Player 1:</p>
@@ -182,47 +206,45 @@ class DeckShuffler extends React.Component {
       <p>Hearts: {deck_str4[2]}</p>
       <p>Spades: {deck_str4[3]}</p>
       */}
-    </div>
+      </div>
     );
   }
 
 }
 
-function sort_by_key(array, key)
-{
- return array.sort(function(a, b)
- {
-  var x = a[key]; var y = b[key];
-  return ((x < y) ? -1 : ((x > y) ? 1 : 0));
- });
+function sort_by_key(array, key) {
+  return array.sort(function (a, b) {
+    var x = a[key]; var y = b[key];
+    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+  });
 }
 
 function printDeck(deck_array, player_num) {
   var player_cards;
-  if (player_num === 1){
+  if (player_num === 1) {
     player_cards = deck_array.slice(0, 13);
-  } else if (player_num === 2){
+  } else if (player_num === 2) {
     player_cards = deck_array.slice(13, 26);
-  } else if (player_num === 3){
+  } else if (player_num === 3) {
     player_cards = deck_array.slice(26, 39);
-  } else if (player_num === 4){ 
+  } else if (player_num === 4) {
     player_cards = deck_array.slice(39, 52);
   }
   var clubs = [];
   var diamonds = [];
   var hearts = [];
   var spades = [];
-  for (var i = 0; i < player_cards.length; i++){
+  for (var i = 0; i < player_cards.length; i++) {
     if (player_cards[i]['suit'] === 'Clubs') {
-        clubs.push(player_cards[i])
+      clubs.push(player_cards[i])
     } else if (player_cards[i]['suit'] === 'Diamonds') {
-        diamonds.push(player_cards[i])
+      diamonds.push(player_cards[i])
     } else if (player_cards[i]['suit'] === 'Hearts') {
-        hearts.push(player_cards[i])
+      hearts.push(player_cards[i])
     } else if (player_cards[i]['suit'] === 'Spades') {
-        spades.push(player_cards[i])
+      spades.push(player_cards[i])
     } else {
-        console.log('Error, bad suit')
+      console.log('Error, bad suit')
     }
   }
   clubs = sort_by_key(clubs, 'ordinal_num');
@@ -231,35 +253,34 @@ function printDeck(deck_array, player_num) {
   spades = sort_by_key(spades, 'ordinal_num');
 
   var clubs_res = ''
-  for (i = 0; i < clubs.length; i ++) {
+  for (i = 0; i < clubs.length; i++) {
     clubs_res += ' ' + clubs[i]['value'];
   }
 
   var diamonds_res = '';
-  for (i = 0; i < diamonds.length; i ++) {
+  for (i = 0; i < diamonds.length; i++) {
     diamonds_res += ' ' + diamonds[i]['value'];
   }
 
   var hearts_res = '';
-  for (i = 0; i < hearts.length; i ++) {
+  for (i = 0; i < hearts.length; i++) {
     hearts_res += ' ' + hearts[i]['value'];
   }
 
   var spades_res = '';
-  for (i = 0; i < spades.length; i ++) {
+  for (i = 0; i < spades.length; i++) {
     spades_res += ' ' + spades[i]['value'];
   }
-    
+
 
   return [clubs_res, diamonds_res, hearts_res, spades_res]
 }
 
 
 function shuffle(array, seed) {
-  console.log('ADAM DECK BEFORE ', array)
+  // From: https://stackoverflow.com/a/2450976/11919380
   var seedrandom = require('seedrandom');
   var rng = seedrandom(seed);
-  console.log(rng());
   var currentIndex = array.length, temporaryValue, randomIndex;
 
   // While there remain elements to shuffle...
@@ -275,8 +296,6 @@ function shuffle(array, seed) {
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
-  console.log('ADAM DECK AFTER', array)
-
   return array;
 }
 
