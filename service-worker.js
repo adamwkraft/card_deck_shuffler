@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/card_deck_shuffler/precache-manifest.d4d89fa1d6d77b6e865cef0757484279.js"
+  "/card_deck_shuffler/precache-manifest.d0f670a5d3ccb953f2c85c5028e58f47.js"
 );
 
 self.addEventListener('message', (event) => {

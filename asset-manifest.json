@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/card_deck_shuffler/static/css/main.c62e34fb.chunk.css",
-    "main.js": "/card_deck_shuffler/static/js/main.7dffcf6a.chunk.js",
-    "main.js.map": "/card_deck_shuffler/static/js/main.7dffcf6a.chunk.js.map",
+    "main.css": "/card_deck_shuffler/static/css/main.ef997805.chunk.css",
+    "main.js": "/card_deck_shuffler/static/js/main.bbe1e065.chunk.js",
+    "main.js.map": "/card_deck_shuffler/static/js/main.bbe1e065.chunk.js.map",
     "runtime-main.js": "/card_deck_shuffler/static/js/runtime-main.d1a96882.js",
     "runtime-main.js.map": "/card_deck_shuffler/static/js/runtime-main.d1a96882.js.map",
     "static/js/2.1a78bfbb.chunk.js": "/card_deck_shuffler/static/js/2.1a78bfbb.chunk.js",
     "static/js/2.1a78bfbb.chunk.js.map": "/card_deck_shuffler/static/js/2.1a78bfbb.chunk.js.map",
     "index.html": "/card_deck_shuffler/index.html",
-    "precache-manifest.d4d89fa1d6d77b6e865cef0757484279.js": "/card_deck_shuffler/precache-manifest.d4d89fa1d6d77b6e865cef0757484279.js",
+    "precache-manifest.d0f670a5d3ccb953f2c85c5028e58f47.js": "/card_deck_shuffler/precache-manifest.d0f670a5d3ccb953f2c85c5028e58f47.js",
     "service-worker.js": "/card_deck_shuffler/service-worker.js",
-    "static/css/main.c62e34fb.chunk.css.map": "/card_deck_shuffler/static/css/main.c62e34fb.chunk.css.map",
+    "static/css/main.ef997805.chunk.css.map": "/card_deck_shuffler/static/css/main.ef997805.chunk.css.map",
     "static/js/2.1a78bfbb.chunk.js.LICENSE.txt": "/card_deck_shuffler/static/js/2.1a78bfbb.chunk.js.LICENSE.txt",
     "static/media/logo.svg": "/card_deck_shuffler/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.d1a96882.js",
     "static/js/2.1a78bfbb.chunk.js",
-    "static/css/main.c62e34fb.chunk.css",
-    "static/js/main.7dffcf6a.chunk.js"
+    "static/css/main.ef997805.chunk.css",
+    "static/js/main.bbe1e065.chunk.js"
   ]
 }
